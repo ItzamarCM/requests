@@ -14,6 +14,22 @@ app.get("/:user/:password", (req,res) => { // :/ es el segmento de valor dinamic
     res.json({msg: 'Fallo en el usuario o contraseña'})
 }) 
 
+// http://localhost:3000/login?fullname=Itzamar&password=123
+app.get('/login', (req,res) => {
+    const {user, password} = req.query
+if(!user || !password){
+    res.status(400).json({msg: 'You need to provide <user> an <password> params'})
+}
+
+    if(user === 'itzamar' & password === '789'){
+
+        res.json({msg: 'Inicio de sesión exitoso'}) //ponerlo una vez hace que el atributo se llame igual a la variable
+            return
+    }
+        res.status(400).json({msg: 'Fallo en el usuario o contraseña'})
+})
+
+
 app.post("/", (req,res) => {
     res.json({msg:'Hola POST!'})
 })
