@@ -1,6 +1,8 @@
 const express = require("express")
 const app = express()
 
+
+app.use(express.json())
 // req=requests   res: response
 
 // http://localhost:3000/itzamar/789
@@ -28,6 +30,32 @@ if(!user || !password){
     }
         res.status(400).json({msg: 'Fallo en el usuario o contraseña'})
 })
+
+
+
+app.post('/login', (req,res) => {
+    const {user, password} = req.body
+if(!user || !password){
+    res.status(400).json({msg: 'You need to provide <user> an <password> params'})
+}
+
+    if(user === 'itzamar' & password === '789'){
+
+        res.json({msg: 'Inicio de sesión exitoso'}) //ponerlo una vez hace que el atributo se llame igual a la variable
+            return
+    }
+        res.status(400).json({msg: 'Fallo en el usuario o contraseña'})
+})
+
+
+
+
+app.post('/login',(req,res) => {
+    const body = req.body
+
+    res.json(body)
+})
+
 
 
 app.post("/", (req,res) => {
